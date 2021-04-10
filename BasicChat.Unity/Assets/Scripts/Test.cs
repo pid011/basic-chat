@@ -1,4 +1,4 @@
-using BasicChat;
+using BasicChat.Client;
 using UnityEngine;
 
 public class Test : MonoBehaviour
@@ -7,8 +7,6 @@ public class Test : MonoBehaviour
     private void Start()
     {
         Class1 cls = new Class1();
-        var a = cls.Test();
-        Debug.Log(a);
     }
 
     // Update is called once per frame

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BasicChat.Lib\BasicChat.Lib.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\BasicChat.Unity\Assets\Plugins\</OutputPath>
+    <DocumentationFile>.\BasicChat.Client.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\BasicChat.Unity\Assets\Plugins\</OutputPath>
+    <DocumentationFile>.\BasicChat.Client.xml</DocumentationFile>
+  </PropertyGroup>
+</Project>

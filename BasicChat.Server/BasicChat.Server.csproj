@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BasicChat\BasicChat.csproj" />
+    <ProjectReference Include="..\BasicChat.Lib\BasicChat.Lib.csproj" />
   </ItemGroup>
 
 </Project>

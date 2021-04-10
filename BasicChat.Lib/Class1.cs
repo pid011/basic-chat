@@ -1,4 +1,4 @@
-namespace BasicChat
+namespace BasicChat.Lib
 {
     /// <summary>
     /// Test 클래스입니다.
@@ -11,7 +11,7 @@ namespace BasicChat
         /// <returns></returns>
         public int Test()
         {
-            return 100;
+            return 50;
         }
     }
 }
