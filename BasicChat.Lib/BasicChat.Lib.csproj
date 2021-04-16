@@ -5,4 +5,12 @@
     <AssemblyName>BasicChat.Lib</AssemblyName>
     <RootNamespace>BasicChat.Lib</RootNamespace>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\BasicChat.Unity\Assets\Plugins\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\BasicChat.Unity\Assets\Plugins\</OutputPath>
+  </PropertyGroup>
 </Project>

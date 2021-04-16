@@ -1,4 +1,4 @@
-using BasicChat.Client;
+using BasicChat.Lib;
 using UnityEngine;
 
 public class Test : MonoBehaviour
@@ -6,7 +6,13 @@ public class Test : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        Class1 cls = new Class1();
+        ChatPacket packet = new ChatPacket
+        {
+            Status = ChatStatus.Welcome,
+            Name = "Test"
+        };
+
+        // ChatPacket.Send(client, packet);
     }
 
     // Update is called once per frame
