@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicChat.Server", "BasicCh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicChat.Lib", "BasicChat.Lib\BasicChat.Lib.csproj", "{1C68D245-3149-47D2-A6A2-E9F12EE690F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicChat.Client", "BasicChat.Client\BasicChat.Client.csproj", "{F45A694C-7B28-4546-8E66-047A38F489C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicChat.ConsoleTest", "BasicChat.ConsoleTest\BasicChat.ConsoleTest.csproj", "{2F6123F7-A9D6-4571-A4CE-404D270C1594}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{1C68D245-3149-47D2-A6A2-E9F12EE690F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C68D245-3149-47D2-A6A2-E9F12EE690F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C68D245-3149-47D2-A6A2-E9F12EE690F3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F45A694C-7B28-4546-8E66-047A38F489C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F45A694C-7B28-4546-8E66-047A38F489C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F45A694C-7B28-4546-8E66-047A38F489C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F45A694C-7B28-4546-8E66-047A38F489C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F6123F7-A9D6-4571-A4CE-404D270C1594}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F6123F7-A9D6-4571-A4CE-404D270C1594}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F6123F7-A9D6-4571-A4CE-404D270C1594}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F6123F7-A9D6-4571-A4CE-404D270C1594}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
