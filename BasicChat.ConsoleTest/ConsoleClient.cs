@@ -42,7 +42,7 @@ namespace LocalChat.ConsoleTest
                         if (!client.Connected) return;
 
                         var chat = ChatPacket.Recieve(client);
-                        Console.WriteLine(chat.ToStringWithTime());
+                        Console.WriteLine(chat.ToStringWithTimeAndName());
                     }
                 }
                 catch (SocketException)
@@ -70,7 +70,7 @@ namespace LocalChat.ConsoleTest
                         if (string.IsNullOrWhiteSpace(str)) continue;
 
                         packet.Status = ChatStatus.Chat;
-                        packet.Contents = str;
+                        packet.Message = str;
                         ChatPacket.Send(client, packet);
                     }
                 }

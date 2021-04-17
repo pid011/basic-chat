@@ -8,18 +8,16 @@ namespace BasicChat.Lib
     {
         Welcome,
         Leave,
-        Chat,
-        TypingStart,
-        TypingEnd,
+        Chat
     }
 
     [Serializable]
     public class ChatPacket
     {
-        public DateTime Time { get; private set; }
+        public DateTime Time { get; private set; } = DateTime.Now;
         public ChatStatus Status { get; set; }
         public string Name { get; set; }
-        public string Contents { get; set; }
+        public string Message { get; set; }
 
         public override string ToString()
         {
@@ -30,17 +28,13 @@ namespace BasicChat.Lib
                 case ChatStatus.Leave:
                     return $"{Name}님이 채팅방을 나갔습니다.";
                 case ChatStatus.Chat:
-                    return $"[{Name}] {Contents}";
-                case ChatStatus.TypingStart:
-                    return $"{Name}님이 채팅을 입력 중 입니다.";
-                case ChatStatus.TypingEnd:
-                    return $"{Name}님이 채팅을 입력 완료했습니다.";
+                    return $"{Message}";
                 default:
                     return base.ToString();
             }
         }
 
-        public string ToStringWithTime() => $"[{Time.ToLongTimeString()}] {ToString()}";
+        public string ToStringWithTimeAndName() => $"[{Time.ToLongTimeString()}][{Name}] {ToString()}";
 
         public static bool Send(TcpClient sender, ChatPacket packet)
         {
@@ -52,7 +46,6 @@ namespace BasicChat.Lib
 
             packet.Time = DateTime.Now;
 
-
             // Time - local -> utc 시간으로 변환 후 보내기
             writer.Write(packet.Time.ToUniversalTime().ToBinary());
             // Status
@@ -60,7 +53,7 @@ namespace BasicChat.Lib
             // Name
             writer.Write(packet.Name ?? "NULL");
             // Chat contents
-            if (packet.Status == ChatStatus.Chat) writer.Write(packet.Contents ?? "NULL");
+            if (packet.Status == ChatStatus.Chat) writer.Write(packet.Message ?? "NULL");
 
             return true;
         }
@@ -82,7 +75,7 @@ namespace BasicChat.Lib
                 Name = reader.ReadString()
             };
             // Chat contents
-            if (packet.Status == ChatStatus.Chat) packet.Contents = reader.ReadString();
+            if (packet.Status == ChatStatus.Chat) packet.Message = reader.ReadString();
 
             return packet;
         }

@@ -18,13 +18,19 @@ namespace BasicChat.Client.UI
             _rectTransform = GetComponent<RectTransform>();
         }
 
-        public void AddChatBubble(string name, string contents)
+        public void AddChatBubble(string name, string message, Color? nameColor = null, Color? messageColor = null)
         {
+            if (nameColor == null) nameColor = BasicChatColors.Black;
+            if (messageColor == null) messageColor = BasicChatColors.White;
+
             var chatbubble = Instantiate(_chatBubblePrefab, transform);
             var chatbox = chatbubble.GetComponent<ChatBubble>();
 
             chatbox.UserName = name;
-            chatbox.Contents = contents;
+            chatbox.UserNameColor = nameColor.Value;
+
+            chatbox.Message = message;
+            chatbox.MessageColor = messageColor.Value;
 
             _fitter.SetLayoutVertical();
             _fitter.SetLayoutHorizontal();

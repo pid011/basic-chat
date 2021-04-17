@@ -12,7 +12,6 @@ namespace BasicChat.Client.UI
         private Text _contentsText;
 
         private ContentSizeFitter _chatBubbleFitter;
-        private ContentSizeFitter _playerNameFitter;
         private ContentSizeFitter _contentsFitter;
         private RectTransform _rectTransform;
 
@@ -21,7 +20,6 @@ namespace BasicChat.Client.UI
             Debug.Assert(_playerNameText && _contentsText);
 
             _chatBubbleFitter = GetComponent<ContentSizeFitter>();
-            _playerNameFitter = _playerNameText.gameObject.GetComponent<ContentSizeFitter>();
             _contentsFitter = _contentsText.gameObject.GetComponent<ContentSizeFitter>();
             _rectTransform = GetComponent<RectTransform>();
         }
@@ -35,13 +33,22 @@ namespace BasicChat.Client.UI
             set
             {
                 _playerNameText.text = value;
-
-                _playerNameFitter.SetLayoutHorizontal();
-                ResetChatBubbleLayout();
             }
         }
 
-        public string Contents
+        public Color UserNameColor
+        {
+            get
+            {
+                return _playerNameText.color;
+            }
+            set
+            {
+                _playerNameText.color = value;
+            }
+        }
+
+        public string Message
         {
             get
             {
@@ -49,17 +56,26 @@ namespace BasicChat.Client.UI
             }
             set
             {
-                var text = value.Trim('\n', '\t', '\r');
-                _contentsText.text = text;
-
+                _contentsText.text = value;
                 _contentsFitter.SetLayoutVertical();
                 ResetChatBubbleLayout();
             }
         }
 
+        public Color MessageColor
+        {
+            get
+            {
+                return _contentsText.color;
+            }
+            set
+            {
+                _contentsText.color = value;
+            }
+        }
+
         private void ResetChatBubbleLayout()
         {
-            _chatBubbleFitter.SetLayoutHorizontal();
             _chatBubbleFitter.SetLayoutVertical();
             _rectTransform.ForceUpdateRectTransforms();
         }

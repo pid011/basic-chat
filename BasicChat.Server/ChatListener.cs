@@ -34,6 +34,22 @@ namespace BasicChat.Server
                 {
                     var packet = ChatPacket.Recieve(client);
                     userName = packet.Name;
+                    Console.WriteLine(packet.ToStringWithTimeAndName());
+
+                    if (packet.Status == ChatStatus.Chat && packet.Message == "!users")
+                    {
+                        var sendPacket = new ChatPacket
+                        {
+                            Name = "SERVER",
+                            Status = ChatStatus.Chat,
+                            Message = $"현재 채팅방의 유저 수는 {s_listeners.Count}명입니다."
+                        };
+
+                        ChatPacket.Send(client, sendPacket);
+                        Console.WriteLine(sendPacket.ToStringWithTimeAndName());
+                        continue;
+                    }
+
                     SendChatToAll(packet);
                 }
             }
@@ -60,7 +76,6 @@ namespace BasicChat.Server
             {
                 ChatPacket.Send(item.Value, packet);
             }
-            Console.WriteLine(packet.ToStringWithTime());
         }
     }
 }

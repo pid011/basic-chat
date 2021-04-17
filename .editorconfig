@@ -8,6 +8,10 @@ root = true
 indent_style = space
 # (Please don't specify an indent_size here; that has too many unintended consequences.)
 
+# guide line
+# https://marketplace.visualstudio.com/items?itemName=PaulHarrington.EditorGuidelines
+guidelines = 120 1px solid 918609
+
 # Code files
 [*.{cs,csx,vb,vbx}]
 indent_size = 4

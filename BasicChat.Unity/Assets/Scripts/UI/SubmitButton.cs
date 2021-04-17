@@ -1,10 +1,17 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace BasicChat.Client.UI
 {
     public class SubmitButton : MonoBehaviour
     {
+        [Serializable]
+        public class SubmittedEvent : UnityEvent<string> { }
+
+        public SubmittedEvent OnSubmitted { get; set; } = new SubmittedEvent();
+
         [SerializeField] private InputField _textInputField;
         [SerializeField] private ChatBubbleGenerator _chatBubbleGenerator;
 
@@ -35,12 +42,12 @@ namespace BasicChat.Client.UI
 
         public void OnClick()
         {
-            var text = _textInputField.text;
-            _textInputField.text = string.Empty;
+            var text = _textInputField.text.Trim('\n', '\t', '\r');
 
             if (string.IsNullOrWhiteSpace(text)) return;
-            _chatBubbleGenerator.AddChatBubble("Player", text);
-            print(text);
+
+            OnSubmitted?.Invoke(text);
+            _textInputField.text = string.Empty;
         }
     }
 }
