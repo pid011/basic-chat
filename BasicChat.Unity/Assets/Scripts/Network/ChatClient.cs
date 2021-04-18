@@ -31,7 +31,23 @@ namespace BasicChat.Client.Network
         public UnityEvent OnConnectedEvent { get; set; } = new UnityEvent();
         public UnityEvent OnDisconnectedEvent { get; set; } = new UnityEvent();
 
-        public bool IsConnected => _client?.Connected ?? false;
+        public bool IsConnected
+        {
+            get
+            {
+                if (_client == null) return false;
+
+                try
+                {
+                    var stream = _client.GetStream();
+                    return stream.CanRead;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
 
         /// <summary>
         /// 채팅서버에 연결을 시도합니다. 성공여부는 <see cref="OnConnectedEvent"/>로 전달됩니다.
@@ -99,9 +115,9 @@ namespace BasicChat.Client.Network
                     {
                         ChatPacket.Send(_client, packet);
                     }
-                    catch (IOException e)
+                    catch (IOException)
                     {
-                        OnExceptionThrownEvent?.Invoke(e);
+                        // OnExceptionThrownEvent?.Invoke(e);
                         OnDisconnectedEvent?.Invoke();
                         return;
                     }
@@ -123,9 +139,9 @@ namespace BasicChat.Client.Network
                     OnDisconnectedEvent?.Invoke();
                     return;
                 }
-                catch (IOException e)
+                catch (IOException)
                 {
-                    OnExceptionThrownEvent?.Invoke(e);
+                    // OnExceptionThrownEvent?.Invoke(e);
                     OnDisconnectedEvent?.Invoke();
                     return;
                 }
