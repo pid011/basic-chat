@@ -53,7 +53,7 @@ namespace BasicChat.Client
                 _generator.AddChatBubble(result.Name, result.Message, result.NameColor, result.MessageColor);
             }
 
-            if (_chatClient.TryRecieve(out var packet))
+            if (_chatClient.TryReceive(out var packet))
             {
                 switch (packet.Status)
                 {

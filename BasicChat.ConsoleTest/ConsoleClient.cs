@@ -41,7 +41,7 @@ namespace LocalChat.ConsoleTest
                     {
                         if (!client.Connected) return;
 
-                        var chat = ChatPacket.Recieve(client);
+                        var chat = ChatPacket.Receive(client);
                         Console.WriteLine(chat.ToStringWithTimeAndName());
                     }
                 }

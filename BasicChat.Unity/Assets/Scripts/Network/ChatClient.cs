@@ -15,7 +15,7 @@ namespace BasicChat.Client.Network
         public class ChatEvent : UnityEvent<ChatPacket> { }
         public class ExceptionThrownEvent : UnityEvent<Exception> { }
 
-        private readonly ConcurrentQueue<ChatPacket> _recievedPackets = new ConcurrentQueue<ChatPacket>();
+        private readonly ConcurrentQueue<ChatPacket> _receivedPackets = new ConcurrentQueue<ChatPacket>();
         private readonly ConcurrentQueue<ChatPacket> _packetWaitList = new ConcurrentQueue<ChatPacket>();
 
         private readonly IPAddress _serverAddress = IPAddress.Parse("127.0.0.1");
@@ -78,9 +78,9 @@ namespace BasicChat.Client.Network
         /// </summary>
         /// <param name="packet">패킷이 있을 경우 받은 패킷 반환. 없으면 기본 인스턴스 반환</param>
         /// <returns>받은 패킷이 있는지 여부</returns>
-        public bool TryRecieve(out ChatPacket packet)
+        public bool TryReceive(out ChatPacket packet)
         {
-            return _recievedPackets.TryDequeue(out packet);
+            return _receivedPackets.TryDequeue(out packet);
         }
 
         private void HandleConnect()
@@ -102,7 +102,7 @@ namespace BasicChat.Client.Network
             OnConnectedEvent?.Invoke();
 
             Task.Run(() => HandleSend());
-            Task.Run(() => HandleRecieve());
+            Task.Run(() => HandleReceive());
         }
 
         private void HandleSend()
@@ -125,14 +125,14 @@ namespace BasicChat.Client.Network
             }
         }
 
-        private void HandleRecieve()
+        private void HandleReceive()
         {
             while (true)
             {
                 try
                 {
-                    var packet = ChatPacket.Recieve(_client);
-                    _recievedPackets.Enqueue(packet);
+                    var packet = ChatPacket.Receive(_client);
+                    _receivedPackets.Enqueue(packet);
                 }
                 catch (EndOfStreamException)
                 {

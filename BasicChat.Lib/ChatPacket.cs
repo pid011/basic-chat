@@ -58,7 +58,7 @@ namespace BasicChat.Lib
             return true;
         }
 
-        public static ChatPacket Recieve(TcpClient reciever)
+        public static ChatPacket Receive(TcpClient reciever)
         {
             var stream = reciever.GetStream();
             var reader = new BinaryReader(stream);

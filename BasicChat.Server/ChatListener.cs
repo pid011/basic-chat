@@ -19,10 +19,10 @@ namespace BasicChat.Server
         {
             if (client == null || !client.Connected) throw new ArgumentException($"클라이언트가 연결되어있지 않습니다.");
 
-            Task.Run(() => HadleRecieve(client));
+            Task.Run(() => HandleReceive(client));
         }
 
-        private static void HadleRecieve(TcpClient client)
+        private static void HandleReceive(TcpClient client)
         {
             var endpoint = client.Client.RemoteEndPoint;
             s_listeners.TryAdd(endpoint, client);
@@ -32,7 +32,7 @@ namespace BasicChat.Server
             {
                 while (true)
                 {
-                    var packet = ChatPacket.Recieve(client);
+                    var packet = ChatPacket.Receive(client);
                     userName = packet.Name;
                     Console.WriteLine(packet.ToStringWithTimeAndName());
 
